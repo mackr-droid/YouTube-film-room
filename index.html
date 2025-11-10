@@ -61,7 +61,6 @@
       cursor: pointer;
     }
 
-    /* Notes panel */
     #notes-panel {
       flex: 1;
       background: #222;
@@ -109,7 +108,7 @@
     </div>
 
     <div class="controls">
-      <input type="text" id="videoUrl" placeholder="Enter YouTube URL">
+      <input type="text" id="videoUrl" placeholder="Enter YouTube URL or video ID">
       <button onclick="loadVideo()">Load Video</button>
       <button onclick="toggleDrawing()">✏️ Draw</button>
       <button onclick="clearCanvas()">🧹 Clear</button>
@@ -122,6 +121,7 @@
     <button id="saveNotes" onclick="saveNotes()">💾 Save Notes</button>
   </div>
 
+  <!-- Load YouTube API before script.js -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
