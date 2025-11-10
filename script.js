@@ -94,4 +94,3 @@ function saveNotes() {
   localStorage.setItem('filmNotes', text);
   alert('Notes saved!');
 }
-
