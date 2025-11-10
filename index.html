@@ -9,22 +9,35 @@
       font-family: sans-serif;
       background: #111;
       color: #fff;
-      text-align: center;
       margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #main {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
       padding: 20px;
     }
+
     #player-container {
       position: relative;
       width: 80%;
       max-width: 900px;
       aspect-ratio: 16/9;
-      margin: 20px auto;
       background: #000;
     }
+
     #player {
       width: 100%;
       height: 100%;
     }
+
     #drawCanvas {
       position: absolute;
       top: 0;
@@ -33,33 +46,80 @@
       height: 100%;
       pointer-events: none;
     }
+
     .controls {
       margin-top: 15px;
     }
+
     input, button {
       font-size: 16px;
       padding: 6px 10px;
     }
+
     button {
       margin: 0 5px;
+      cursor: pointer;
+    }
+
+    /* Notes panel */
+    #notes-panel {
+      flex: 1;
+      background: #222;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid #444;
+    }
+
+    #notes-panel h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #notes {
+      flex: 1;
+      resize: none;
+      width: 100%;
+      font-size: 14px;
+      background: #111;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #saveNotes {
+      margin-top: 10px;
+      background: #444;
+      color: white;
+      border: none;
+      padding: 8px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>🎥 YouTube Film Review Tool</h1>
-  <p>Load a YouTube video and draw over it (like reviewing football film!)</p>
+  <div id="main">
+    <h1>🎥 YouTube Film Review Tool</h1>
+    <p>Load a YouTube video, draw over it (left-click only), and take notes.</p>
 
-  <div id="player-container">
-    <div id="player"></div>
-    <canvas id="drawCanvas"></canvas>
+    <div id="player-container">
+      <div id="player"></div>
+      <canvas id="drawCanvas"></canvas>
+    </div>
+
+    <div class="controls">
+      <input type="text" id="videoUrl" placeholder="Enter YouTube URL">
+      <button onclick="loadVideo()">Load Video</button>
+      <button onclick="toggleDrawing()">✏️ Draw</button>
+      <button onclick="clearCanvas()">🧹 Clear</button>
+    </div>
   </div>
 
-  <div class="controls">
-    <input type="text" id="videoUrl" placeholder="Enter YouTube URL">
-    <button onclick="loadVideo()">Load Video</button>
-    <button onclick="toggleDrawing()">✏️ Draw</button>
-    <button onclick="clearCanvas()">🧹 Clear</button>
+  <div id="notes-panel">
+    <h2>📝 Notes</h2>
+    <textarea id="notes" placeholder="Type your observations here..."></textarea>
+    <button id="saveNotes" onclick="saveNotes()">💾 Save Notes</button>
   </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
